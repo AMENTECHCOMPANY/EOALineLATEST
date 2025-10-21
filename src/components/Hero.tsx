@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useLocalization } from '../contexts/LocalizationContext';
 
 type Slide = {
@@ -171,6 +171,38 @@ const Hero: React.FC = () => {
   const prevLaVeiraSlide = () =>
       setCurrentLaVeiraSlide((prev) => (prev - 1 + laVeiraSlides.length) % laVeiraSlides.length);
 
+  const video1Ref = useRef<HTMLVideoElement>(null);
+  const video2Ref = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const playVideo = (videoRef: React.RefObject<HTMLVideoElement>) => {
+      if (videoRef.current) {
+        videoRef.current.play().catch(() => {
+          videoRef.current?.load();
+          setTimeout(() => {
+            videoRef.current?.play().catch(() => {});
+          }, 100);
+        });
+      }
+    };
+
+    playVideo(video1Ref);
+    playVideo(video2Ref);
+
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        playVideo(video1Ref);
+        playVideo(video2Ref);
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
+
   return (
       <section className="w-full">
         {/* --- TUMIE Coming Soon Consolidated Slide --- */}
@@ -253,12 +285,23 @@ const Hero: React.FC = () => {
         {/* --- First video (full screen) --- */}
         <div className="h-screen relative">
           <video
+              ref={video1Ref}
               src={heroSlides[0].src}
               autoPlay
               loop
               muted
               playsInline
+              preload="auto"
               className="w-full h-full object-cover"
+              onClick={(e) => {
+                const video = e.currentTarget;
+                if (video.paused) {
+                  video.play().catch(() => {});
+                }
+              }}
+              onLoadedData={(e) => {
+                e.currentTarget.play().catch(() => {});
+              }}
           />
           <div className="absolute inset-0 bg-black/30" />
           <div className="absolute bottom-20 left-1/2 -translate-x-1/2 bg-black/70 backdrop-blur-sm text-white px-8 py-4 rounded-lg border border-primary-400/30">
@@ -271,12 +314,23 @@ const Hero: React.FC = () => {
         {/* --- Second video (full screen) --- */}
         <div className="h-screen relative">
           <video
+              ref={video2Ref}
               src={heroSlides[1].src}
               autoPlay
               loop
               muted
               playsInline
+              preload="auto"
               className="w-full h-full object-cover"
+              onClick={(e) => {
+                const video = e.currentTarget;
+                if (video.paused) {
+                  video.play().catch(() => {});
+                }
+              }}
+              onLoadedData={(e) => {
+                e.currentTarget.play().catch(() => {});
+              }}
           />
           <div className="absolute inset-0 bg-black/30" />
           <div className="absolute bottom-20 left-1/2 -translate-x-1/2 bg-black/70 backdrop-blur-sm text-white px-8 py-4 rounded-lg border border-primary-400/30">
