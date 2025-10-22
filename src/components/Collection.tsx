@@ -34,10 +34,11 @@ const Collection: React.FC<CollectionProps> = ({
       price: 45.00,
       images: {
         black: [
-          "https://ggcxbhkzkfuyyoxguizy.supabase.co/storage/v1/object/public/LV%20Edited%20BG/LV-F-BL-1.jpg",
-          "https://ggcxbhkzkfuyyoxguizy.supabase.co/storage/v1/object/public/LV%20Edited%20BG/LV-F-BL-2.jpg",
-          "https://ggcxbhkzkfuyyoxguizy.supabase.co/storage/v1/object/public/LV%20Edited%20BG/LV-F-BL-SD-1.jpg",
-          "https://ggcxbhkzkfuyyoxguizy.supabase.co/storage/v1/object/public/LV%20Edited%20BG/LV-F-BL-SD-2.jpg"
+    
+          "https://ggcxbhkzkfuyyoxguizy.supabase.co/storage/v1/object/public/Tumi%20T-shirt/TM-TS-M-BLK-2.png",
+          "https://ggcxbhkzkfuyyoxguizy.supabase.co/storage/v1/object/public/Tumi%20T-shirt/TM-TS-M-BLK-3.png",
+          "https://ggcxbhkzkfuyyoxguizy.supabase.co/storage/v1/object/public/Tumi%20T-shirt/TM-TS-M-BLK-4.png",
+          "https://ggcxbhkzkfuyyoxguizy.supabase.co/storage/v1/object/public/Tumi%20T-shirt/TM-TS-M-BLK-5.png",
         ],
         beige: [
           "https://ggcxbhkzkfuyyoxguizy.supabase.co/storage/v1/object/public/LV%20Edited%20BG/LV-F-BG-1.jpg",
